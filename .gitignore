@@ -53,3 +53,5 @@ __pycache__/
 # Node (на всякий случай)
 node_modules/
 .cache/
+
+.obsidian
