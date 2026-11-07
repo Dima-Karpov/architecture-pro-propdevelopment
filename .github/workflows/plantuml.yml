@@ -1,0 +1,83 @@
+# По уроку «GitHub Actions PlantUML»: из .puml собираем схемы и коммитим в git.
+# Как в architecture-pro-standart: актуальные actions, PlantUML jar, SVG,
+# коммит только при push / workflow_dispatch (не ломаем PR), [skip ci] против цикла.
+name: PlantUML Diagrams
+
+on:
+  push:
+    paths:
+      - "Task*/**/*.puml"
+      - ".github/workflows/plantuml.yml"
+  pull_request:
+    paths:
+      - "Task*/**/*.puml"
+      - ".github/workflows/plantuml.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate-diagrams:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: "17"
+          distribution: temurin
+
+      - name: Install Graphviz
+        run: sudo apt-get update && sudo apt-get install -y graphviz
+
+      - name: Download PlantUML
+        run: |
+          curl -fsSL -o /tmp/plantuml.jar \
+            https://github.com/plantuml/plantuml/releases/latest/download/plantuml.jar
+          java -jar /tmp/plantuml.jar -version
+
+      - name: Generate diagrams
+        run: |
+          set -euo pipefail
+          mapfile -d '' files < <(find Task1 Task2 Task3 Task4 Task5 Task6 Task7 -name '*.puml' -print0 2>/dev/null | sort -z)
+          if [ "${#files[@]}" -eq 0 ]; then
+            echo "No .puml files yet"
+            exit 0
+          fi
+          for file in "${files[@]}"; do
+            echo "render $file"
+            java -jar /tmp/plantuml.jar -tsvg "$file"
+          done
+
+      - name: Upload diagrams
+        if: github.event_name != 'push'
+        uses: actions/upload-artifact@v4
+        with:
+          name: plantuml-diagrams
+          path: |
+            Task1/**/*.svg
+            Task2/**/*.svg
+            Task3/**/*.svg
+            Task4/**/*.svg
+            Task5/**/*.svg
+            Task6/**/*.svg
+            Task7/**/*.svg
+          if-no-files-found: warn
+
+      - name: Commit diagrams
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          find Task1 Task2 Task3 Task4 Task5 Task6 Task7 -name '*.svg' -exec git add {} + 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "No diagram changes"
+          else
+            git commit -m "docs: generate PlantUML diagrams [skip ci]"
+            git push
+          fi
