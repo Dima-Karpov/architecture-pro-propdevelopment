@@ -1,0 +1,14 @@
+# Только cluster-scoped binding.
+# RoleBinding по доменным NS (viewer / secrets / configurator) — цикл в bind-roles.sh.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: pd-viewers-cluster-reader
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: pd-cluster-reader
+subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: Group
+    name: pd-viewers

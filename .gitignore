@@ -30,6 +30,9 @@ kubeconfig
 *.kubeconfig
 .kube/
 
+# Task4: generated user certs (local only)
+Task4/certs/*
+
 # Diagram backups and temp
 *.drawio.bkp
 *.bak

@@ -1,0 +1,20 @@
+# Domain namespaces for PropDevelopment (sales / housing / finance / data).
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: sales
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: housing
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: finance
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: data
