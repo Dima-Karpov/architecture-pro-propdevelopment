@@ -1,0 +1,50 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+LAYOUT_TOP_DOWN()
+HIDE_STEREOTYPE()
+
+title System Context — «Умный дом» PropDevelopment\nДомофон и шлагбаум через внешнего партнёра. Протоколы на стрелках.
+
+AddElementTag("new", $bgColor="#D4EDDA", $fontColor="#155724", $borderColor="#28A745", $legendText="новый контур")
+
+Person(owner, "Собственник (owner)", "Сособственник квартиры. ЛК: open, своя биометрия, whitelist, приглашение семьи")
+Person(resident, "Член семьи (resident)", "Живёт в квартире без права собственности. ЛК: open, своё согласие/био; не правит whitelist")
+
+System(prop, "PropDevelopment", "Витрина, tenant-core, Keycloak, smart-home-adapter. Мастер домохозяйства, согласий (на человека) и whitelist ГРЗ")
+
+System_Ext(partner, "Партнёр «Умный дом»", "Edge-match N лиц на квартиру, LPR, видеопоток. Не мастер ПДн PropDevelopment", $tags="new")
+System_Ext(intercom, "Интеллектуальный домофон", "Видео, звонок, открытие, биометрия семьи на edge", $tags="new")
+System_Ext(barrier, "Интеллектуальный шлагбаум", "Управление + авто-открытие по списку ГРЗ домохозяйства", $tags="new")
+
+Rel(owner, prop, "ЛК: open, согласия, whitelist, состав дома", "HTTPS sync REST JSON\nOIDC + step-up MFA")
+Rel(resident, prop, "ЛК: open, своё согласие/био", "HTTPS sync REST JSON\nOIDC + step-up MFA")
+Rel(owner, prop, "Видео домофона", "HTTPS session ticket\nWebRTC или HLS у партнёра")
+Rel(resident, prop, "Видео домофона", "HTTPS session ticket\nWebRTC или HLS у партнёра")
+Rel(prop, partner, "Open, sync whitelist, политика subject↔object↔device", "HTTPS sync REST JSON\nOAuth 2.0 CC + mTLS\nscope: tenant_id + object_id")
+Rel(partner, prop, "Звонок / визит / результат open", "HTTPS async webhook\nпартнёр → adapter → витрина → push subject")
+Rel(partner, intercom, "Видео, open, edge face-match (N лиц)", "vendor device API over TLS")
+Rel(partner, barrier, "Open + push LPR whitelist", "vendor device API over TLS")
+Rel(prop, owner, "Push звонка / визита", "mobile push\nтолько через витрину")
+Rel(prop, resident, "Push звонка / визита", "mobile push\nтолько через витрину")
+
+note right of prop
+  **Домохозяйство**
+  object_id ← N owner + M resident
+  био/согласие — на subject_id
+  plates[] — на object
+  ----
+  **Периметр**
+  партнёр только через adapter
+  звонок/push не минуя PropDevelopment
+  запрет кросс-УК; audit с subject_id
+end note
+
+note right of partner
+  сырые шаблоны лица / полное видео
+  в PropDevelopment и Data не уходят
+  TTL видеопотока и журналов — в НФТ
+end note
+
+SHOW_LEGEND()
+@enduml
