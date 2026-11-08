@@ -1,0 +1,709 @@
+<mxfile host="app.diagrams.net" agent="Cursor" version="22.1.0" type="device">
+  <diagram id="data-security-mindmap" name="Безопасность данных">
+    <mxGraphModel dx="2400" dy="1400" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3600" pageHeight="2000" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="center" value="Безопасность данных" style="ellipse;whiteSpace=wrap;html=1;fillColor=#1a365d;fontColor=#ffffff;strokeColor=#1a365d;fontStyle=1;fontSize=18;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1580" y="40" width="240" height="80" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="legend" value="Оценка" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontStyle=1;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="40" y="30" width="100" height="20" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg-low" value="незначительный" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c6f6d5;strokeColor=#276749;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="40" y="54" width="130" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg-mid" value="значительный" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fefcbf;strokeColor=#b7791f;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="40" y="88" width="130" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg-crit" value="критический" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fed7d7;strokeColor=#c53030;fontSize=10;align=center;" vertex="1" parent="1">
+          <mxGeometry x="40" y="122" width="130" height="26" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg-l" value="L3 риск+оценка · L4 почему справа" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=10;fontColor=#4a5568;" vertex="1" parent="1">
+          <mxGeometry x="40" y="156" width="220" height="20" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== COL1 ПУБЛИЧНЫЕ: trunk x=50, boxes x=80 ===== -->
+        <mxCell id="cat-pub" value="Публичные" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2b6cb0;fontColor=#ffffff;strokeColor=#2b6cb0;fontStyle=1;fontSize=14;align=center;" vertex="1" parent="1">
+          <mxGeometry x="200" y="200" width="180" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-pub" style="endArrow=none;html=1;strokeWidth=2;strokeColor=#2b6cb0;edgeStyle=orthogonalEdgeStyle;rounded=0;" edge="1" parent="1" source="center" target="cat-pub">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1700" y="170"/>
+              <mxPoint x="290" y="170"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="pub-h-data" value="Данные" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontStyle=2;fontSize=11;fontColor=#2b6cb0;" vertex="1" parent="1">
+          <mxGeometry x="80" y="270" width="70" height="18" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="pub-d1" value="Каталог витрины: ЖК, планировки, публичные цены, фото" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ebf8ff;strokeColor=#2b6cb0;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="80" y="294" width="340" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-pub-d1" style="endArrow=none;html=1;strokeColor=#2b6cb0;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0;exitY=1;entryX=0;entryY=0.5;" edge="1" parent="1" source="cat-pub" target="pub-d1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="50" y="244"/>
+              <mxPoint x="50" y="314"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="pub-d2" value="Маркетинг / сайт / пресс-материалы" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ebf8ff;strokeColor=#2b6cb0;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="80" y="350" width="340" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-pub-d2" style="endArrow=none;html=1;strokeColor=#2b6cb0;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="pub-d1" target="pub-d2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="50" y="314"/>
+              <mxPoint x="50" y="368"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="pub-d3" value="Публичная часть онлайн-тура (демо без ПДн)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ebf8ff;strokeColor=#2b6cb0;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="80" y="402" width="340" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-pub-d3" style="endArrow=none;html=1;strokeColor=#2b6cb0;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="pub-d2" target="pub-d3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="50" y="368"/>
+              <mxPoint x="50" y="420"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="pub-h-risk" value="Риски L3 → почему L4" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontStyle=2;fontSize=11;fontColor=#2b6cb0;" vertex="1" parent="1">
+          <mxGeometry x="80" y="460" width="180" height="18" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="pub-r1" value="Утечка — незначительный" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c6f6d5;strokeColor=#276749;fontSize=11;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="80" y="488" width="250" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-pub-r1" style="endArrow=none;html=1;strokeColor=#2b6cb0;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="pub-d3" target="pub-r1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="50" y="420"/>
+              <mxPoint x="50" y="505"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pub-w1" value="Уже предназначены для распространения" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#a0aec0;fontSize=10;align=left;spacingLeft=8;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="488" width="280" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-pub-w1" style="endArrow=none;html=1;strokeColor=#a0aec0;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="pub-r1" target="pub-w1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="pub-r2" value="Потеря — значительный" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fefcbf;strokeColor=#b7791f;fontSize=11;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="80" y="542" width="250" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-pub-r2" style="endArrow=none;html=1;strokeColor=#2b6cb0;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="pub-r1" target="pub-r2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="50" y="505"/>
+              <mxPoint x="50" y="559"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pub-w2" value="Падение витрины бьёт по воронке продаж" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#a0aec0;fontSize=10;align=left;spacingLeft=8;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="542" width="280" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-pub-w2" style="endArrow=none;html=1;strokeColor=#a0aec0;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="pub-r2" target="pub-w2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="pub-r3" value="Искажение — критический" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fed7d7;strokeColor=#c53030;fontSize=11;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="80" y="596" width="250" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-pub-r3" style="endArrow=none;html=1;strokeColor=#2b6cb0;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="pub-r2" target="pub-r3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="50" y="559"/>
+              <mxPoint x="50" y="613"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pub-w3" value="Подмена цен/планировок → мошенничество и репутация" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#a0aec0;fontSize=10;align=left;spacingLeft=8;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="596" width="280" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-pub-w3" style="endArrow=none;html=1;strokeColor=#a0aec0;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="pub-r3" target="pub-w3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="pub-r4" value="Некачественные — значительный" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fefcbf;strokeColor=#b7791f;fontSize=11;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="80" y="650" width="250" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-pub-r4" style="endArrow=none;html=1;strokeColor=#2b6cb0;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="pub-r3" target="pub-r4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="50" y="613"/>
+              <mxPoint x="50" y="667"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pub-w4" value="Ошибочные цены/остатки → жалобы и отмены броней" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#a0aec0;fontSize=10;align=left;spacingLeft=8;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="650" width="280" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-pub-w4" style="endArrow=none;html=1;strokeColor=#a0aec0;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="pub-r4" target="pub-w4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="pub-r5" value="Обесценивание — незначительный" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c6f6d5;strokeColor=#276749;fontSize=11;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="80" y="704" width="250" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-pub-r5" style="endArrow=none;html=1;strokeColor=#2b6cb0;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="pub-r4" target="pub-r5">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="50" y="667"/>
+              <mxPoint x="50" y="721"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pub-w5" value="Маркетинговая ценность восстанавливается быстро" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#a0aec0;fontSize=10;align=left;spacingLeft=8;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="704" width="280" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-pub-w5" style="endArrow=none;html=1;strokeColor=#a0aec0;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="pub-r5" target="pub-w5">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== COL2 ВНУТРЕННИЕ: trunk x=720, boxes x=750 ===== -->
+        <mxCell id="cat-int" value="Внутренние" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#2f855a;fontColor=#ffffff;strokeColor=#2f855a;fontStyle=1;fontSize=14;align=center;" vertex="1" parent="1">
+          <mxGeometry x="870" y="200" width="180" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-int" style="endArrow=none;html=1;strokeWidth=2;strokeColor=#2f855a;edgeStyle=orthogonalEdgeStyle;rounded=0;" edge="1" parent="1" source="center" target="cat-int">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1700" y="170"/>
+              <mxPoint x="960" y="170"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="int-h-data" value="Данные" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontStyle=2;fontSize=11;fontColor=#2f855a;" vertex="1" parent="1">
+          <mxGeometry x="750" y="270" width="70" height="18" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="int-d1" value="Регламенты/инструкции продуктовых и операционных команд" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0fff4;strokeColor=#2f855a;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="750" y="294" width="340" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-int-d1" style="endArrow=none;html=1;strokeColor=#2f855a;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0;exitY=1;entryX=0;entryY=0.5;" edge="1" parent="1" source="cat-int" target="int-d1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="720" y="244"/>
+              <mxPoint x="720" y="314"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="int-d2" value="Учёт фонда client-mart-estate-app (статусы до публикации)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0fff4;strokeColor=#2f855a;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="750" y="350" width="340" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-int-d2" style="endArrow=none;html=1;strokeColor=#2f855a;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="int-d1" target="int-d2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="720" y="314"/>
+              <mxPoint x="720" y="370"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="int-d3" value="Агрегированная BI/отчётность без ПДн (домен Дата)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0fff4;strokeColor=#2f855a;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="750" y="410" width="340" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-int-d3" style="endArrow=none;html=1;strokeColor=#2f855a;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="int-d2" target="int-d3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="720" y="370"/>
+              <mxPoint x="720" y="430"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="int-d4" value="Служба каталогов + технологи (конфиги, не-секретные логи)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0fff4;strokeColor=#2f855a;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="750" y="470" width="340" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-int-d4" style="endArrow=none;html=1;strokeColor=#2f855a;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="int-d3" target="int-d4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="720" y="430"/>
+              <mxPoint x="720" y="490"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="int-d5" value="Планы текущего/капремонта до выдачи собственникам" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0fff4;strokeColor=#2f855a;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="750" y="530" width="340" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-int-d5" style="endArrow=none;html=1;strokeColor=#2f855a;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="int-d4" target="int-d5">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="720" y="490"/>
+              <mxPoint x="720" y="550"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="int-h-risk" value="Риски L3 → почему L4" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontStyle=2;fontSize=11;fontColor=#2f855a;" vertex="1" parent="1">
+          <mxGeometry x="750" y="592" width="180" height="18" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="int-r1" value="Утечка — значительный" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fefcbf;strokeColor=#b7791f;fontSize=11;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="750" y="620" width="250" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-int-r1" style="endArrow=none;html=1;strokeColor=#2f855a;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="int-d5" target="int-r1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="720" y="550"/>
+              <mxPoint x="720" y="637"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="int-w1" value="Конкурентная разведка + карта внутренней инфры" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#a0aec0;fontSize=10;align=left;spacingLeft=8;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="1030" y="620" width="300" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-int-w1" style="endArrow=none;html=1;strokeColor=#a0aec0;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="int-r1" target="int-w1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="int-r2" value="Потеря — значительный" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fefcbf;strokeColor=#b7791f;fontSize=11;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="750" y="674" width="250" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-int-r2" style="endArrow=none;html=1;strokeColor=#2f855a;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="int-r1" target="int-r2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="720" y="637"/>
+              <mxPoint x="720" y="691"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="int-w2" value="Ломает операционку продаж/ЖКУ без прямого штрафа 152-ФЗ" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#a0aec0;fontSize=10;align=left;spacingLeft=8;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="1030" y="674" width="300" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-int-w2" style="endArrow=none;html=1;strokeColor=#a0aec0;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="int-r2" target="int-w2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="int-r3" value="Искажение — значительный" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fefcbf;strokeColor=#b7791f;fontSize=11;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="750" y="728" width="250" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-int-r3" style="endArrow=none;html=1;strokeColor=#2f855a;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="int-r2" target="int-r3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="720" y="691"/>
+              <mxPoint x="720" y="745"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="int-w3" value="Неверные статусы объектов/ремонта → сбои процессов" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#a0aec0;fontSize=10;align=left;spacingLeft=8;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="1030" y="728" width="300" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-int-w3" style="endArrow=none;html=1;strokeColor=#a0aec0;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="int-r3" target="int-w3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="int-r4" value="Некачественные — значительный" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fefcbf;strokeColor=#b7791f;fontSize=11;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="750" y="782" width="250" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-int-r4" style="endArrow=none;html=1;strokeColor=#2f855a;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="int-r3" target="int-r4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="720" y="745"/>
+              <mxPoint x="720" y="799"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="int-w4" value="Плохие агрегаты BI → неверные решения до запуска ML" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#a0aec0;fontSize=10;align=left;spacingLeft=8;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="1030" y="782" width="300" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-int-w4" style="endArrow=none;html=1;strokeColor=#a0aec0;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="int-r4" target="int-w4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="int-r5" value="Обесценивание — незначительный" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c6f6d5;strokeColor=#276749;fontSize=11;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="750" y="836" width="250" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-int-r5" style="endArrow=none;html=1;strokeColor=#2f855a;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="int-r4" target="int-r5">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="720" y="799"/>
+              <mxPoint x="720" y="853"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="int-w5" value="Внутренние знания устаревают, но не «сжигают» компанию разом" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#a0aec0;fontSize=10;align=left;spacingLeft=8;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="1030" y="836" width="300" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-int-w5" style="endArrow=none;html=1;strokeColor=#a0aec0;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="int-r5" target="int-w5">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== COL3 КОНФИДЕНЦИАЛЬНЫЕ: trunk x=1420, boxes x=1450 ===== -->
+        <mxCell id="cat-conf" value="Конфиденциальные" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#c05621;fontColor=#ffffff;strokeColor=#c05621;fontStyle=1;fontSize=14;align=center;" vertex="1" parent="1">
+          <mxGeometry x="1570" y="200" width="200" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-conf" style="endArrow=none;html=1;strokeWidth=2;strokeColor=#c05621;edgeStyle=orthogonalEdgeStyle;rounded=0;" edge="1" parent="1" source="center" target="cat-conf">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="conf-h-data" value="Данные" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontStyle=2;fontSize=11;fontColor=#c05621;" vertex="1" parent="1">
+          <mxGeometry x="1450" y="270" width="70" height="18" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="conf-d1" value="ПДн клиентов: ФИО, телефон, email (client-crm-app)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffaf0;strokeColor=#c05621;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="1450" y="294" width="360" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-conf-d1" style="endArrow=none;html=1;strokeColor=#c05621;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0;exitY=1;entryX=0;entryY=0.5;" edge="1" parent="1" source="cat-conf" target="conf-d1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1420" y="244"/>
+              <mxPoint x="1420" y="314"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="conf-d2" value="Расширенная анкета онлайн-сделки (client-mart-app) + осмотры" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffaf0;strokeColor=#c05621;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="1450" y="350" width="360" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-conf-d2" style="endArrow=none;html=1;strokeColor=#c05621;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="conf-d1" target="conf-d2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1420" y="314"/>
+              <mxPoint x="1420" y="370"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="conf-d6" value="Документы / паспортные данные онлайн-сделки" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffaf0;strokeColor=#c05621;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="1450" y="410" width="360" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-conf-d6" style="endArrow=none;html=1;strokeColor=#c05621;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="conf-d2" target="conf-d6">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1420" y="370"/>
+              <mxPoint x="1420" y="428"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="conf-d3" value="ПДн собственников и профили ЖКУ (tenant-core-app)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffaf0;strokeColor=#c05621;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="1450" y="466" width="360" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-conf-d3" style="endArrow=none;html=1;strokeColor=#c05621;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="conf-d6" target="conf-d3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1420" y="428"/>
+              <mxPoint x="1420" y="486"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="conf-d4" value="ПДн у партнёра УК через API (cross-tenant; лишние ПДн в контрактах)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffaf0;strokeColor=#c05621;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="1450" y="526" width="360" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-conf-d4" style="endArrow=none;html=1;strokeColor=#c05621;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="conf-d3" target="conf-d4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1420" y="486"/>
+              <mxPoint x="1420" y="548"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="conf-d5" value="Персонализированные выгрузки в хранилище/BI до обезличивания" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffaf0;strokeColor=#c05621;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="1450" y="590" width="360" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-conf-d5" style="endArrow=none;html=1;strokeColor=#c05621;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="conf-d4" target="conf-d5">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1420" y="548"/>
+              <mxPoint x="1420" y="610"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="conf-d7" value="Номера авто шлагбаума (доступ на территорию)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fffaf0;strokeColor=#c05621;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="1450" y="650" width="360" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-conf-d7" style="endArrow=none;html=1;strokeColor=#c05621;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="conf-d5" target="conf-d7">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1420" y="610"/>
+              <mxPoint x="1420" y="668"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="conf-h-risk" value="Риски L3 → почему L4" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontStyle=2;fontSize=11;fontColor=#c05621;" vertex="1" parent="1">
+          <mxGeometry x="1450" y="710" width="180" height="18" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="conf-r1" value="Утечка — критический" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fed7d7;strokeColor=#c53030;fontSize=11;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="1450" y="738" width="250" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-conf-r1" style="endArrow=none;html=1;strokeColor=#c05621;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="conf-d7" target="conf-r1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1420" y="668"/>
+              <mxPoint x="1420" y="755"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="conf-w1" value="152-ФЗ, репутация, сценарий «как у конкурента»" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#a0aec0;fontSize=10;align=left;spacingLeft=8;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="1730" y="738" width="300" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-conf-w1" style="endArrow=none;html=1;strokeColor=#a0aec0;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="conf-r1" target="conf-w1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="conf-r2" value="Потеря — критический" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fed7d7;strokeColor=#c53030;fontSize=11;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="1450" y="792" width="250" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-conf-r2" style="endArrow=none;html=1;strokeColor=#c05621;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="conf-r1" target="conf-r2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1420" y="755"/>
+              <mxPoint x="1420" y="809"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="conf-w2" value="Нет клиента/сделки/истории ЖКУ → остановка сервисов" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#a0aec0;fontSize=10;align=left;spacingLeft=8;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="1730" y="792" width="300" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-conf-w2" style="endArrow=none;html=1;strokeColor=#a0aec0;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="conf-r2" target="conf-w2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="conf-r3" value="Искажение — критический" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fed7d7;strokeColor=#c53030;fontSize=11;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="1450" y="846" width="250" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-conf-r3" style="endArrow=none;html=1;strokeColor=#c05621;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="conf-r2" target="conf-r3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1420" y="809"/>
+              <mxPoint x="1420" y="863"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="conf-w3" value="В кейсе: в ЛК чужое ФИО — доверие и комплаенс" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#a0aec0;fontSize=10;align=left;spacingLeft=8;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="1730" y="846" width="300" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-conf-w3" style="endArrow=none;html=1;strokeColor=#a0aec0;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="conf-r3" target="conf-w3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="conf-r4" value="Некачественные — критический" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fed7d7;strokeColor=#c53030;fontSize=11;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="1450" y="900" width="250" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-conf-r4" style="endArrow=none;html=1;strokeColor=#c05621;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="conf-r3" target="conf-r4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1420" y="863"/>
+              <mxPoint x="1420" y="917"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="conf-w4" value="Несколько точек регистрации без координации → дубли" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#a0aec0;fontSize=10;align=left;spacingLeft=8;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="1730" y="900" width="300" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-conf-w4" style="endArrow=none;html=1;strokeColor=#a0aec0;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="conf-r4" target="conf-w4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="conf-r5" value="Обесценивание — значительный" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fefcbf;strokeColor=#b7791f;fontSize=11;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="1450" y="954" width="250" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-conf-r5" style="endArrow=none;html=1;strokeColor=#c05621;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="conf-r4" target="conf-r5">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1420" y="917"/>
+              <mxPoint x="1420" y="971"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="conf-w5" value="Грязные ПДн-потоки блокируют заявленные BI/ML-продукты" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#a0aec0;fontSize=10;align=left;spacingLeft=8;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="1730" y="954" width="300" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-conf-w5" style="endArrow=none;html=1;strokeColor=#a0aec0;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="conf-r5" target="conf-w5">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- ===== COL4 СЕКРЕТНЫЕ: trunk x=2140, boxes x=2170 ===== -->
+        <mxCell id="cat-sec" value="Секретные" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9b2c2c;fontColor=#ffffff;strokeColor=#9b2c2c;fontStyle=1;fontSize=14;align=center;" vertex="1" parent="1">
+          <mxGeometry x="2290" y="200" width="180" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-sec" style="endArrow=none;html=1;strokeWidth=2;strokeColor=#9b2c2c;edgeStyle=orthogonalEdgeStyle;rounded=0;" edge="1" parent="1" source="center" target="cat-sec">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1700" y="170"/>
+              <mxPoint x="2380" y="170"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="sec-h-data" value="Данные" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontStyle=2;fontSize=11;fontColor=#9b2c2c;" vertex="1" parent="1">
+          <mxGeometry x="2170" y="270" width="70" height="18" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="sec-d1" value="Платёжные данные / реквизиты оплаты ЖКУ" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff5f5;strokeColor=#9b2c2c;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="2170" y="294" width="360" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-sec-d1" style="endArrow=none;html=1;strokeColor=#9b2c2c;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0;exitY=1;entryX=0;entryY=0.5;" edge="1" parent="1" source="cat-sec" target="sec-d1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2140" y="244"/>
+              <mxPoint x="2140" y="314"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="sec-d2" value="Управление замком «Умный дом» (коды/команды доступа)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff5f5;strokeColor=#9b2c2c;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="2170" y="350" width="360" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-sec-d2" style="endArrow=none;html=1;strokeColor=#9b2c2c;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="sec-d1" target="sec-d2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2140" y="314"/>
+              <mxPoint x="2140" y="370"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="sec-d3" value="Биометрия домофона / УД (контур развития, ISO/152-ФЗ)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff5f5;strokeColor=#9b2c2c;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="2170" y="410" width="360" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-sec-d3" style="endArrow=none;html=1;strokeColor=#9b2c2c;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="sec-d2" target="sec-d3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2140" y="370"/>
+              <mxPoint x="2140" y="430"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="sec-d4" value="Секреты интеграций онлайн-сделки с госорганами (токены)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff5f5;strokeColor=#9b2c2c;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="2170" y="470" width="360" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-sec-d4" style="endArrow=none;html=1;strokeColor=#9b2c2c;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="sec-d3" target="sec-d4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2140" y="430"/>
+              <mxPoint x="2140" y="490"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="sec-d5" value="Критичные проводки accountant-service-1 и привилегированные учётки" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff5f5;strokeColor=#9b2c2c;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="2170" y="530" width="360" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-sec-d5" style="endArrow=none;html=1;strokeColor=#9b2c2c;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="sec-d4" target="sec-d5">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2140" y="490"/>
+              <mxPoint x="2140" y="550"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <mxCell id="sec-h-risk" value="Риски L3 → почему L4" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontStyle=2;fontSize=11;fontColor=#9b2c2c;" vertex="1" parent="1">
+          <mxGeometry x="2170" y="592" width="180" height="18" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="sec-r1" value="Утечка — критический" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fed7d7;strokeColor=#c53030;fontSize=11;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="2170" y="620" width="250" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-sec-r1" style="endArrow=none;html=1;strokeColor=#9b2c2c;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="sec-d5" target="sec-r1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2140" y="550"/>
+              <mxPoint x="2140" y="637"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sec-w1" value="Платежи/биометрия/доступ в жильё — максимальный ущерб" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#a0aec0;fontSize=10;align=left;spacingLeft=8;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="2450" y="620" width="300" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-sec-w1" style="endArrow=none;html=1;strokeColor=#a0aec0;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="sec-r1" target="sec-w1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="sec-r2" value="Потеря — критический" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fed7d7;strokeColor=#c53030;fontSize=11;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="2170" y="674" width="250" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-sec-r2" style="endArrow=none;html=1;strokeColor=#9b2c2c;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="sec-r1" target="sec-r2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2140" y="637"/>
+              <mxPoint x="2140" y="691"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sec-w2" value="Недоступна оплата ЖКУ или замок/сделка" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#a0aec0;fontSize=10;align=left;spacingLeft=8;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="2450" y="674" width="300" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-sec-w2" style="endArrow=none;html=1;strokeColor=#a0aec0;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="sec-r2" target="sec-w2">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="sec-r3" value="Искажение — критический" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fed7d7;strokeColor=#c53030;fontSize=11;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="2170" y="728" width="250" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-sec-r3" style="endArrow=none;html=1;strokeColor=#9b2c2c;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="sec-r2" target="sec-r3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2140" y="691"/>
+              <mxPoint x="2140" y="745"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sec-w3" value="Подмена команд замка или платёжных поручений" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#a0aec0;fontSize=10;align=left;spacingLeft=8;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="2450" y="728" width="300" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-sec-w3" style="endArrow=none;html=1;strokeColor=#a0aec0;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="sec-r3" target="sec-w3">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="sec-r4" value="Некачественные — значительный" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fefcbf;strokeColor=#b7791f;fontSize=11;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="2170" y="782" width="250" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-sec-r4" style="endArrow=none;html=1;strokeColor=#9b2c2c;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="sec-r3" target="sec-r4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2140" y="745"/>
+              <mxPoint x="2140" y="799"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sec-w4" value="Сбой биллинга/доступа без обязательно «утечки»" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#a0aec0;fontSize=10;align=left;spacingLeft=8;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="2450" y="782" width="300" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-sec-w4" style="endArrow=none;html=1;strokeColor=#a0aec0;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="sec-r4" target="sec-w4">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="sec-r5" value="Обесценивание — критический" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fed7d7;strokeColor=#c53030;fontSize=11;fontStyle=1;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="2170" y="836" width="250" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-sec-r5" style="endArrow=none;html=1;strokeColor=#9b2c2c;edgeStyle=orthogonalEdgeStyle;rounded=0;exitX=0;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="sec-r4" target="sec-r5">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="2140" y="799"/>
+              <mxPoint x="2140" y="853"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sec-w5" value="Компрометация секретов обесценивает весь контур доверия" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#a0aec0;fontSize=10;align=left;spacingLeft=8;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="2450" y="836" width="300" height="34" as="geometry"/>
+        </mxCell>
+        <mxCell id="e-sec-w5" style="endArrow=none;html=1;strokeColor=#a0aec0;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="sec-r5" target="sec-w5">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
