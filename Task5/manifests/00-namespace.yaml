@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: pd-demo
+  labels:
+    app.kubernetes.io/part-of: propdevelopment
+    pd.segment: demo-network
