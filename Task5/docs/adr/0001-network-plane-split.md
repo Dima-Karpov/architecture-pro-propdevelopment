@@ -51,6 +51,8 @@ pd-demo
 4. `non-admin-api-allow.yaml` — Ingress+Egress TCP/80 только между `front-end` и `back-end-api`.
 5. `admin-api-allow.yaml` — то же для admin-пары.
 
+C4 Container: [`c4/01-containers-network-planes.puml`](../../c4/01-containers-network-planes.puml) (SVG — GitHub Actions).
+
 Правила NetworkPolicy **аддитивны**: deny + allow-pair даёт нужную матрицу без «дыр» у подов без selector.
 
 **Почему не отдельные namespace на этом шаге.** Задание курса явно: один NS и разрез по labels. Для PropDevelopment в проде домены уже режем NS (`sales`/`housing`/`finance`/`data`, Task4); внутри домена ЖКУ всё равно нужны плоскости client vs admin — это как раз NetworkPolicy по `role`. Отдельный NS на admin — следующий шаг (если появятся разные команды/секреты), не замена label-политик.

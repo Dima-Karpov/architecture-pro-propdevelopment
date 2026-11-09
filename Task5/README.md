@@ -1,7 +1,8 @@
 # Task5: NetworkPolicy (PropDevelopment)
 
 Микросегментация east-west в одном namespace `pd-demo`: клиентская пара отдельно от админской.  
-Решение и «почему так» — ADR [`docs/adr/0001-network-plane-split.md`](docs/adr/0001-network-plane-split.md).
+Решение и «почему так» — ADR [`docs/adr/0001-network-plane-split.md`](docs/adr/0001-network-plane-split.md).  
+C4 Container (плоскости + allow/deny): [`c4/01-containers-network-planes.puml`](c4/01-containers-network-planes.puml) — SVG соберёт GitHub Actions после push.
 
 ## Матрица
 
@@ -22,6 +23,7 @@
 | `manifests/non-admin-api-allow.yaml`   | front ↔ api (имя как в задании)            |
 | `manifests/admin-api-allow.yaml`       | admin-front ↔ admin-api                    |
 | `docs/adr/0001-network-plane-split.md` | ADR: что/как разделяем                     |
+| `c4/01-containers-network-planes.puml` | C4: client/admin planes + allow/deny       |
 | `deploy.sh` / `verify.sh`              | apply + wget-матрица                       |
 
 ## CNI
