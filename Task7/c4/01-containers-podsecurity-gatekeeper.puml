@@ -1,0 +1,60 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+LAYOUT_TOP_DOWN()
+HIDE_STEREOTYPE()
+
+skinparam nodesep 45
+skinparam ranksep 50
+skinparam wrapWidth 200
+
+title Container — PodSecurity + Gatekeeper Task7 (PropDevelopment)\nNS audit-zone: PSS restricted + OPA Gatekeeper. Insecure deny, secure allow.
+
+AddElementTag("control", $bgColor="#E8DAEF", $fontColor="#4A235A", $borderColor="#7D3C98", $legendText="admission / control plane")
+AddElementTag("zone", $bgColor="#D5F5E3", $fontColor="#145A32", $borderColor="#27AE60", $legendText="workload NS")
+AddElementTag("bad", $bgColor="#FADBD8", $fontColor="#78281F", $borderColor="#C0392B", $legendText="insecure (must deny)")
+AddElementTag("good", $bgColor="#D4E6F1", $fontColor="#1B4F72", $borderColor="#2980B9", $legendText="secure (must allow)")
+AddRelTag("deny", $textColor="#922B21", $lineColor="#C0392B", $lineStyle="dashed", $legendText="deny admission")
+AddRelTag("allow", $textColor="#196F3D", $lineColor="#27AE60", $legendText="allow admission")
+AddRelTag("check", $textColor="#5B2C6F", $lineColor="#7D3C98", $legendText="validate")
+
+Person(devops, "DevOps / reviewer", "kubectl apply из Task7/\n(run.sh или руками)")
+
+System_Boundary(cp, "Kubernetes control plane") {
+  Container(apiserver, "kube-apiserver", "K8s API", "Точка входа create Pod", $tags="control")
+  Container(psa, "Pod Security Admission", "built-in", "labels NS:\nenforce/audit/warn=restricted", $tags="control")
+  Container(gk, "OPA Gatekeeper", "webhook", "2-й слой: policy-as-code\ndenied: privileged, hostPath;\nrequire: runAsNonRoot + RO rootfs", $tags="control")
+}
+
+System_Boundary(ns, "Namespace audit-zone", $tags="zone") {
+  Container(bad_priv, "pod-privileged", "nginx", "privileged: true", $tags="bad")
+  Container(bad_hp, "pod-hostpath", "nginx", "volume hostPath", $tags="bad")
+  Container(bad_root, "pod-root-user", "nginx", "runAsUser: 0", $tags="bad")
+  Container(ok1, "pod-*-secure ×3", "nginx", "non-root, drop ALL,\nseccomp RuntimeDefault,\nreadOnlyRootFilesystem +\nemptyDir", $tags="good")
+}
+
+Rel(devops, apiserver, "apply Pod YAML", "HTTPS kubectl")
+Rel(apiserver, psa, "PSS restricted", "admission", $tags="check")
+Rel(apiserver, gk, "validating webhook", "admission", $tags="check")
+
+Rel(psa, bad_priv, "privileged / caps / root", "forbidden", $tags="deny")
+Rel(psa, bad_hp, "hostPath volume", "forbidden", $tags="deny")
+Rel(psa, bad_root, "runAsUser=0", "forbidden", $tags="deny")
+Rel(gk, bad_priv, "deny-privileged", "Gatekeeper deny", $tags="deny")
+Rel(gk, bad_hp, "deny-hostpath", "Gatekeeper deny", $tags="deny")
+Rel(gk, bad_root, "require-nonroot-readonly", "Gatekeeper deny", $tags="deny")
+
+Rel(psa, ok1, "PSS ok", "accepted", $tags="allow")
+Rel(gk, ok1, "constraints ok", "accepted", $tags="allow")
+
+note bottom of ns
+  **Слои:**
+  1. PSS restricted — baseline; insecure режет первым
+  2. Gatekeeper — defense-in-depth / policy-as-code
+  Закрывает privileged-дыру Task6;
+  secret-данные Task1 не на hostPath/root.
+  Прогон: bash Task7/run.sh
+end note
+
+SHOW_LEGEND()
+@enduml
