@@ -1,0 +1,65 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+LAYOUT_TOP_DOWN()
+HIDE_STEREOTYPE()
+
+skinparam nodesep 50
+skinparam ranksep 55
+skinparam wrapWidth 180
+
+title Container — NetworkPolicy Task5 (PropDevelopment)\nNS pd-demo: client plane ↔ отдельно от admin plane. Default-deny + allow по label role.
+
+AddElementTag("client", $bgColor="#D6EAF8", $fontColor="#1A5276", $borderColor="#2980B9", $legendText="plane: client")
+AddElementTag("admin", $bgColor="#FDEBD0", $fontColor="#7E5109", $borderColor="#E67E22", $legendText="plane: admin")
+AddRelTag("allow", $textColor="#196F3D", $lineColor="#27AE60", $legendText="allow TCP/80")
+AddRelTag("deny", $textColor="#922B21", $lineColor="#C0392B", $lineStyle="dashed", $legendText="deny (default-deny)")
+
+System_Boundary(ns, "Namespace pd-demo — один NS, разрез по labels role") {
+  Boundary(client, "plane: client") {
+    Container(fe, "front-end-app", "nginx", "label role=front-end\nвитрина / ЛК", $tags="client")
+    Container(be, "back-end-api-app", "nginx", "label role=back-end-api\nклиентский API", $tags="client")
+  }
+
+  Boundary(admin, "plane: admin") {
+    Container(afe, "admin-front-end-app", "nginx", "label role=admin-front-end\nадмин-UI", $tags="admin")
+    Container(abe, "admin-back-end-api-app", "nginx", "label role=admin-back-end-api\nпривилегированный API", $tags="admin")
+  }
+}
+
+Container_Ext(dns, "CoreDNS", "kube-system", "Резолв Service DNS\nallow-dns UDP/TCP 53")
+Container_Ext(probe, "probe (alpine)", "без label role", "Чужой pod — как в уроке:\nwget → timeout")
+
+' Разрешённые пары (в обе стороны)
+Rel(fe, be, "front ↔ api", "TCP 80\nnon-admin-api-allow", $tags="allow")
+Rel(be, fe, "api ↔ front", "TCP 80", $tags="allow")
+Rel(afe, abe, "admin-front ↔ admin-api", "TCP 80\nadmin-api-allow", $tags="allow")
+Rel(abe, afe, "admin-api ↔ admin-front", "TCP 80", $tags="allow")
+
+' Перекрёст запрещён
+Rel(fe, abe, "перекрёст", "default-deny", $tags="deny")
+Rel(afe, be, "перекрёст", "default-deny", $tags="deny")
+Rel(probe, be, "нет role → deny", "default-deny", $tags="deny")
+
+' DNS всем подам
+Rel(fe, dns, "resolve", "UDP/TCP 53", $tags="allow")
+Rel(afe, dns, "resolve", "UDP/TCP 53", $tags="allow")
+
+Lay_R(fe, be)
+Lay_R(afe, abe)
+Lay_D(client, admin)
+Lay_R(ns, dns)
+Lay_D(be, probe)
+
+note bottom of ns
+  **Политики (аддитивны):**
+  1. default-deny-all — Ingress+Egress пустые
+  2. allow-dns → CoreDNS
+  3. non-admin-api-allow — front ↔ back-end-api
+  4. admin-api-allow — admin-front ↔ admin-api
+  CNI: Calico (kindnet не enforce'ит).
+  Доверие к label → Task7 admission.
+end note
+
+SHOW_LEGEND()
+@enduml

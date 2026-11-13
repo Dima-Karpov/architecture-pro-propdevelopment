@@ -1,0 +1,47 @@
+# ClusterRoles as reusable templates. Namespaced rights are bound via RoleBinding
+# in domain NS only (not kube-system). Cluster-scoped resources need a separate narrow role.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: pd-viewer
+rules:
+  - apiGroups: [""]
+    resources: [pods, services, configmaps]
+    verbs: [get, list, watch]
+  - apiGroups: [apps]
+    resources: [deployments]
+    verbs: [get, list, watch]
+---
+# Narrow cluster-scoped read (nodes/namespaces cannot be granted via RoleBinding).
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: pd-cluster-reader
+rules:
+  - apiGroups: [""]
+    resources: [nodes, namespaces]
+    verbs: [get, list, watch]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: pd-configurator
+rules:
+  - apiGroups: [""]
+    resources: [pods, services, configmaps]
+    verbs: [get, list, watch, create, update, patch, delete]
+  - apiGroups: [apps]
+    resources: [deployments]
+    verbs: [get, list, watch, create, update, patch, delete]
+  - apiGroups: [networking.k8s.io]
+    resources: [ingresses]
+    verbs: [get, list, watch, create, update, patch, delete]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: pd-secrets-admin
+rules:
+  - apiGroups: [""]
+    resources: [secrets]
+    verbs: [get, list, watch, create, update, patch]

@@ -1,0 +1,23 @@
+# Дополнение к Task6: фокус на workload security (Pod create/update).
+# RequestResponse — видно тело манифеста при попытках insecure deploy.
+apiVersion: audit.k8s.io/v1
+kind: Policy
+rules:
+  - level: RequestResponse
+    verbs: ["create", "update", "patch"]
+    resources:
+      - group: ""
+        resources: ["pods"]
+  - level: Metadata
+    verbs: ["create", "update", "patch", "delete"]
+    resources:
+      - group: "admissionregistration.k8s.io"
+        resources: ["validatingwebhookconfigurations", "mutatingwebhookconfigurations"]
+      - group: "constraints.gatekeeper.sh"
+        resources: ["*"]
+      - group: "templates.gatekeeper.sh"
+        resources: ["constrainttemplates"]
+  - level: Metadata
+    resources:
+      - group: "*"
+        resources: ["*"]

@@ -1,0 +1,109 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+LAYOUT_TOP_DOWN()
+HIDE_STEREOTYPE()
+
+skinparam nodesep 40
+skinparam ranksep 50
+skinparam wrapWidth 200
+
+title Container — «Умный дом» (обновление ландшафта PropDevelopment)\nНовые: smart-home-adapter + smart-home-db. CRM / Data / платежи вне контура партнёра.
+
+AddElementTag("new", $bgColor="#D4EDDA", $fontColor="#155724", $borderColor="#28A745", $legendText="новый контейнер")
+AddElementTag("out", $bgColor="#F8F9FA", $fontColor="#6C757D", $borderColor="#ADB5BD", $legendText="вне контура партнёра")
+AddRelTag("new", $textColor="#155724", $lineColor="#28A745", $legendText="новый поток")
+
+Person(owner, "Собственник (owner)", "Сособственник: open, био, whitelist, приглашение семьи")
+Person(resident, "Член семьи (resident)", "Open + своё согласие/био; без управления домом")
+
+System_Boundary(prop, "PropDevelopment — контур ЖКУ / Умный дом") {
+  Container(showcase, "Витрина сервисов для собственников", "Mobile iOS/Android", "ЛК ЖКУ + «Умный дом». Не ходит к партнёру напрямую")
+  Container(auth, "auth-service-1 (Keycloak)", "Keycloak / OIDC", "IdP owners и residents. Step-up / MFA")
+  ContainerDb(authDb, "auth-db-1", "PostgreSQL", "УЗ и сессии IdP")
+
+  Container(tenant, "tenant-core-app", "Kotlin, Spring Boot", "Услуги + AuthZ owner/resident. Оркестрирует adapter")
+  ContainerDb(tenantDb, "tenant-core-db", "PostgreSQL", "ПДн / услуги ЖКУ. Биошаблоны здесь не хранит")
+
+  Container(adapter, "smart-home-adapter", "Kotlin, Spring Boot", "Единственная дверь к партнёру: open, sync политик/whitelist, audit", $tags="new")
+  ContainerDb(shDb, "smart-home-db", "PostgreSQL", "Домохозяйство subject↔object, согласия по человеку, plates[], object↔device, журнал", $tags="new")
+}
+
+' Вне контура партнёра — на схеме, без связей к partner
+Container(crm, "CRM собственников", "Kotlin, Spring Boot", "ПДн жильцов. В API партнёра не входит", $tags="out")
+ContainerDb(crmDb, "crm-tenant-db", "PostgreSQL", "БД CRM собственников", $tags="out")
+Container(data, "Хранилище / BI", "Greenplum / S3", "Агрегаты. Сырые био/видео/полный whitelist не принимает", $tags="out")
+System_Ext(pay, "Платёжная система", "ЖКУ-оплаты. Вне контура умного дома", $tags="out")
+
+System_Ext(partner, "Партнёр «Умный дом»", "Edge-биометрия, LPR, видеопоток устройств")
+System_Ext(intercom, "Интеллектуальный домофон", "Видео, открытие, face match на edge")
+System_Ext(barrier, "Интеллектуальный шлагбаум", "Открытие + LPR по whitelist")
+
+Rel(owner, showcase, "ЛК: open, дом, whitelist", "HTTPS\nmobile → BFF/API")
+Rel(resident, showcase, "ЛК: open, своя био", "HTTPS\nmobile → BFF/API")
+Rel(owner, auth, "Логин / step-up MFA", "HTTPS OIDC\nAuth Code + PKCE")
+Rel(resident, auth, "Логин / step-up MFA", "HTTPS OIDC\nAuth Code + PKCE")
+Rel(showcase, auth, "Проверка access token", "HTTPS\nOIDC JWT / JWKS")
+Rel(auth, authDb, "Читает и пишет УЗ", "SQL sync")
+
+Rel(showcase, tenant, "Open, согласия, whitelist, состав дома", "HTTPS sync REST JSON\nBearer OIDC + role")
+Rel(owner, showcase, "Видео домофона", "HTTPS ticket → WebRTC/HLS")
+Rel(resident, showcase, "Видео домофона", "HTTPS ticket → WebRTC/HLS")
+Rel(tenant, tenantDb, "Профиль / услуги ЖКУ", "SQL sync")
+Rel(tenant, adapter, "Open, sync политик subject, audit", "HTTPS sync REST JSON\nservice mTLS или JWT\nвнутри периметра", $tags="new")
+
+Rel(adapter, shDb, "Домохозяйство, согласия, plates, журнал", "SQL sync", $tags="new")
+Rel(adapter, partner, "POST open / PUT whitelist / sync bio policy", "HTTPS sync REST JSON\nOAuth 2.0 CC + mTLS\nscope tenant_id+object_id", $tags="new")
+Rel(partner, adapter, "Звонок / open / edge-match ref", "HTTPS async webhook", $tags="new")
+Rel(adapter, showcase, "Событие звонка → push subject", "HTTPS sync / internal event\nвитрина шлёт mobile push", $tags="new")
+
+Rel(partner, intercom, "Видео / open / N лиц на edge", "vendor device API over TLS")
+Rel(partner, barrier, "Open / LPR whitelist push", "vendor device API over TLS")
+
+' CRM рядом, без связи к партнёру
+Rel(crm, crmDb, "ПДн собственников", "SQL sync")
+
+Lay_R(showcase, auth)
+Lay_R(auth, authDb)
+Lay_D(showcase, tenant)
+Lay_R(tenant, tenantDb)
+Lay_D(tenant, adapter)
+Lay_R(adapter, shDb)
+Lay_D(adapter, partner)
+Lay_R(partner, intercom)
+Lay_R(intercom, barrier)
+
+Lay_R(prop, crm)
+Lay_R(crm, data)
+Lay_R(data, pay)
+
+note right of adapter
+  **Единственная дверь + REST**
+  человек→мы: sync REST + OIDC
+  мы→партнёр: sync REST + CC/mTLS
+  партнёр→мы: webhook/callback
+  мы→витрина: событие звонка → push
+  устройства: только vendor API
+  ----
+  короткоживущие токены
+  запрет кросс-УК, секреты вне кода
+  идемпотентность open-команд
+end note
+
+note right of shDb
+  **Мастер у нас**
+  subject ↔ object (owner|resident)
+  согласие био — на человека
+  plates[] на object
+  object ↔ device
+  audit с subject_id
+end note
+
+note bottom of data
+  вне контура партнёра:
+  нет сырых шаблонов лица,
+  полного видео и лишнего ПДн
+end note
+
+SHOW_LEGEND()
+@enduml

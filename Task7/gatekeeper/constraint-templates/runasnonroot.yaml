@@ -1,0 +1,60 @@
+apiVersion: templates.gatekeeper.sh/v1
+kind: ConstraintTemplate
+metadata:
+  name: k8spsprunasnonroot
+spec:
+  crd:
+    spec:
+      names:
+        kind: K8sPSPRunAsNonRoot
+  targets:
+    - target: admission.k8s.gatekeeper.sh
+      rego: |
+        package k8spsprunasnonroot
+
+        violation[{"msg": msg}] {
+          c := input_containers[_]
+          not run_as_non_root(c)
+          msg := sprintf("runAsNonRoot must be true for container %v", [c.name])
+        }
+
+        violation[{"msg": msg}] {
+          c := input_containers[_]
+          not read_only_root_fs(c)
+          msg := sprintf("readOnlyRootFilesystem must be true for container %v", [c.name])
+        }
+
+        run_as_non_root(c) {
+          c.securityContext.runAsNonRoot == true
+        }
+
+        run_as_non_root(c) {
+          not has_field(c, "securityContext")
+          input.review.object.spec.securityContext.runAsNonRoot == true
+        }
+
+        run_as_non_root(c) {
+          has_field(c, "securityContext")
+          not has_field(c.securityContext, "runAsNonRoot")
+          input.review.object.spec.securityContext.runAsNonRoot == true
+        }
+
+        read_only_root_fs(c) {
+          c.securityContext.readOnlyRootFilesystem == true
+        }
+
+        input_containers[c] {
+          c := input.review.object.spec.containers[_]
+        }
+
+        input_containers[c] {
+          c := input.review.object.spec.initContainers[_]
+        }
+
+        has_field(obj, field) {
+          obj[field]
+        }
+
+        has_field(obj, field) {
+          obj[field] == false
+        }
